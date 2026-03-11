@@ -25,4 +25,13 @@
     <string name="entry_type">Izvēlaties manuālās ievades veidu:</string>
     <string name="entry_type_full">Darbs beidzās Eiropā</string>
     <string name="entry_type_back">Darbs beidzās Latvijā</string>
+
+    <string name="vdo_instructions_title">VDO soli pa solim pamācība</string>
+    <string name="vdo_instr_intro">1. Ievietojiet karti. \"M entry?\" -> Nospiediet [OK]\n2. \"End time\" -> Nospiediet [OK]\n\nTagad precīzi ievadiet šos soļus:</string>
+    <string name="vdo_instr_step">SOLIS %1$d:\n- Izvēlieties %2$s izmantojot [▲/▼] -> Nospiediet [OK]\n- Iestatiet datumu uz %3$s izmantojot [▲/▼] -> Nospiediet [OK]\n- Iestatiet laiku uz %4$s izmantojot [▲/▼] -> Nospiediet [OK]</string>
+    <string name="vdo_instr_final">\nŠajā brīdī varat pārbaudīt visus ievadītos datus. Izmantojiet [↩] pogu, ja nepieciešams kaut ko labot.\n\nNobeiguma soļi:\n- \"Confirm?\" -> Nospiediet [OK]\n- \"Start country\" -> Izvēlieties izmantojot [▲/▼] -> Nospiediet [OK]</string>
+
+    <string name="activity_rest">ATPŪTA 🛌</string>
+    <string name="activity_avail">GATAVĪBA ⧄</string>
+    <string name="activity_work">DARBS ⚒</string>
 </resources>

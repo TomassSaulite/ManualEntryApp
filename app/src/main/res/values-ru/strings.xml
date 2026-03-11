@@ -25,4 +25,13 @@
     <string name="entry_type">Выберите вид ручного ввода:</string>
     <string name="entry_type_full">Извлечение было в Европе</string>
     <string name="entry_type_back">Извлечение было в Латвии</string>
+
+    <string name="vdo_instructions_title">Пошаговая инструкция VDO</string>
+    <string name="vdo_instr_intro">1. Вставьте карту. Подождите \"M entry?\".\n2. Нажмите [OK].\n3. Появится \"End time\". Нажмите [OK].\n\nСледуйте этим шагам точно:</string>
+    <string name="vdo_instr_step">ШАГ %1$d:\n- Режим: Нажимайте [▲/▼] до %2$s. Нажмите [OK].\n- Дата: Нажимайте [▲/▼] до %3$s. Нажмите [OK].\n- Время: Нажимайте [▲/▼] до %4$s. Нажмите [OK].</string>
+    <string name="vdo_instr_final">\nНа этом этапе вы можете проверить все введенные данные. Используйте кнопку [↩], если нужно что-то исправить.\n\nФИНАЛЬНЫЕ ШАГИ:\n- \"Confirm?\" -> Нажмите [OK].\n- \"Start country\" -> Выберите страну [▲/▼]. Нажмите [OK].</string>
+
+    <string name="activity_rest">ОТДЫХ 🛌</string>
+    <string name="activity_avail">ГОТОВность ⧄</string>
+    <string name="activity_work">РАБОТА ⚒</string>
 </resources>

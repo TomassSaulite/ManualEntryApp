@@ -25,4 +25,13 @@
     <string name="entry_type">Select Entry Type:</string>
     <string name="entry_type_full">Tacho card was removed in Europe</string>
     <string name="entry_type_back">Tacho card was removed in Latvia</string>
+
+    <string name="vdo_instructions_title">VDO Step-by-Step Guide</string>
+    <string name="vdo_instr_intro">1. Insert card. \"M entry?\" -> Press [OK]\n2. \"End time\" -> Press [OK]\n\nNow enter these steps precisely:</string>
+    <string name="vdo_instr_step">STEP %1$d:\n- Select %2$s using [▲/▼] -> Press [OK]\n- Set Date to %3$s using [▲/▼] -> Press [OK]\n- Set Time to %4$s using [▲/▼] -> Press [OK]</string>
+    <string name="vdo_instr_final">\nAt this point, you can review all entries. Use the [↩] button if you need to correct anything.\n\nFinal steps:\n- \"Confirm?\" -> Press [OK]\n- \"Start country\" -> Select using [▲/▼] -> Press [OK]</string>
+
+    <string name="activity_rest">REST 🛌</string>
+    <string name="activity_avail">AVAILability ⧄</string>
+    <string name="activity_work">WORK ⚒</string>
 </resources>

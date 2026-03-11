@@ -31,6 +31,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rbFull: RadioButton
 
     private val dateTimeFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
+    private val dateFormat = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
+    private val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+
+    private var currentBlocks = mutableListOf<TachoBlock>()
+
+    data class TachoBlock(val activityResId: Int, val endTime: Calendar)
 
     companion object {
         private var languageSelectedThisSession = false
@@ -140,13 +146,10 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        val result = StringBuilder()
         val isFullEntry = rbFull.isChecked
+        currentBlocks.clear()
 
-        val bed = getString(R.string.symbol_bed)
-        val avail = getString(R.string.symbol_availability)
-
-        // Forward from removal (Base road)
+        // Forward from removal
         val r0 = removal.clone() as Calendar
         val r1 = (r0.clone() as Calendar).apply { 
             add(Calendar.HOUR_OF_DAY, 24)
@@ -159,7 +162,7 @@ class MainActivity : AppCompatActivity() {
         val r3 = (r2.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, 12) }
         val r4 = (r3.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, 12) }
 
-        // Backward from insertion (Road back)
+        // Backward from insertion
         val i4 = insertion.clone() as Calendar
         val i3 = (i4.clone() as Calendar).apply { 
             add(Calendar.HOUR_OF_DAY, -24)
@@ -175,21 +178,33 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (isFullEntry) {
-            result.append("M  ${dateTimeFormat.format(r0.time)} \n$bed ${dateTimeFormat.format(r1.time)}\n\n")
-            result.append("M  ${dateTimeFormat.format(r1.time)} \n$avail  ${dateTimeFormat.format(r2.time)}\n\n")
-            result.append("M  ${dateTimeFormat.format(r2.time)} \n$bed ${dateTimeFormat.format(r3.time)}\n\n")
-            result.append("M  ${dateTimeFormat.format(r3.time)} \n$avail  ${dateTimeFormat.format(r4.time)}\n\n")
+            currentBlocks.add(TachoBlock(R.string.activity_rest, r1))
+            currentBlocks.add(TachoBlock(R.string.activity_avail, r2))
+            currentBlocks.add(TachoBlock(R.string.activity_rest, r3))
+            currentBlocks.add(TachoBlock(R.string.activity_avail, r4))
         }
 
-        val vacationStart = if (isFullEntry) r4 else r0
-        result.append("M  ${dateTimeFormat.format(vacationStart.time)} \n$bed ${dateTimeFormat.format(i0.time)}\n\n")
+        currentBlocks.add(TachoBlock(R.string.activity_rest, i0))
+        currentBlocks.add(TachoBlock(R.string.activity_avail, i1))
+        currentBlocks.add(TachoBlock(R.string.activity_rest, i2))
+        currentBlocks.add(TachoBlock(R.string.activity_avail, i3))
+        currentBlocks.add(TachoBlock(R.string.activity_rest, i4))
 
-        result.append("M  ${dateTimeFormat.format(i0.time)} \n$avail  ${dateTimeFormat.format(i1.time)}\n\n")
-        result.append("M  ${dateTimeFormat.format(i1.time)} \n$bed ${dateTimeFormat.format(i2.time)}\n\n")
-        result.append("M  ${dateTimeFormat.format(i2.time)} \n$avail  ${dateTimeFormat.format(i3.time)}\n\n")
-        result.append("M  ${dateTimeFormat.format(i3.time)} \n$bed ${dateTimeFormat.format(i4.time)}\n\n")
+        val resultText = buildString {
+            var startTime: Calendar = removal
+            currentBlocks.forEach { block ->
+                val symbol = when(block.activityResId) {
+                    R.string.activity_rest -> getString(R.string.symbol_bed)
+                    R.string.activity_avail -> getString(R.string.symbol_availability)
+                    else -> "⚒"
+                }
+                append("M  ${dateTimeFormat.format(startTime.time)}\n")
+                append("$symbol  ${dateTimeFormat.format(block.endTime.time)}\n\n")
+                startTime = block.endTime
+            }
+        }
 
-        showResultDialog(result.toString())
+        showResultDialog(resultText)
     }
 
     private fun showResultDialog(result: String) {
@@ -199,12 +214,38 @@ class MainActivity : AppCompatActivity() {
         
         val tvResultPopup = dialog.findViewById<TextView>(R.id.tvResultPopup)
         val btnClose = dialog.findViewById<Button>(R.id.btnClose)
+        val btnInfo = dialog.findViewById<Button>(R.id.btnInfo)
         
         tvResultPopup.typeface = Typeface.MONOSPACE
         tvResultPopup.text = result
         btnClose.setOnClickListener { dialog.dismiss() }
+        btnInfo.setOnClickListener {
+            showVdoInstructions()
+        }
         
         dialog.show()
+    }
+
+    private fun showVdoInstructions() {
+        val instr = StringBuilder()
+        instr.append(getString(R.string.vdo_instr_intro)).append("\n\n")
+        
+        currentBlocks.forEachIndexed { index, block ->
+            val activityName = getString(block.activityResId)
+            val dateStr = dateFormat.format(block.endTime.time)
+            val timeStr = timeFormat.format(block.endTime.time)
+            
+            instr.append(getString(R.string.vdo_instr_step, index + 1, activityName, dateStr, timeStr))
+            instr.append("\n\n")
+        }
+        
+        instr.append(getString(R.string.vdo_instr_final))
+
+        AlertDialog.Builder(this)
+            .setTitle(R.string.vdo_instructions_title)
+            .setMessage(instr.toString())
+            .setPositiveButton(android.R.string.ok, null)
+            .show()
     }
 
     private fun showErrorDialog(message: String) {
