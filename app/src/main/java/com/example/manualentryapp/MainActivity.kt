@@ -151,23 +151,23 @@ class MainActivity : AppCompatActivity() {
         val vacBed = getString(R.string.symbol_vacation_bed)
 
         if (isFullEntry) {
-            result.append(getString(R.string.label_getting_to_base)).append("\n")
-            result.append("${dateTimeFormat.format(r0.time)} - ${dateTimeFormat.format(r1.time)} $bed\n")
-            result.append("${dateTimeFormat.format(r1.time)} - ${dateTimeFormat.format(r2.time)} $avail\n")
-            result.append("${dateTimeFormat.format(r2.time)} - ${dateTimeFormat.format(r3.time)} $bed\n")
-            result.append("${dateTimeFormat.format(r3.time)} - ${dateTimeFormat.format(r4.time)} $avail\n")
+//            result.append(getString(R.string.label_getting_to_base)).append("\n")
+            result.append("M${dateTimeFormat.format(r0.time)} \n \uD83D\uDECF${dateTimeFormat.format(r1.time)} \n\n")
+            result.append("M${dateTimeFormat.format(r1.time)} \n ⧄${dateTimeFormat.format(r2.time)} \n\n")
+            result.append("M${dateTimeFormat.format(r2.time)} \n \uD83D\uDECF${dateTimeFormat.format(r3.time)}\n\n")
+            result.append("M${dateTimeFormat.format(r3.time)} \n ⧄${dateTimeFormat.format(r4.time)} \n\n")
             result.append("\n")
         }
 
-        result.append(getString(R.string.label_vacation)).append("\n")
+//        result.append(getString(R.string.label_vacation)).append("\n")
         val vacationStart = if (isFullEntry) r4 else r0
-        result.append("${dateTimeFormat.format(vacationStart.time)} - ${dateTimeFormat.format(i0.time)} $vacBed\n")
+        result.append("M${dateTimeFormat.format(vacationStart.time)}  \n \uD83D\uDECF${dateTimeFormat.format(i0.time)} \n\n")
 
-        result.append("\n").append(getString(R.string.label_getting_back)).append("\n")
-        result.append("${dateTimeFormat.format(i0.time)} - ${dateTimeFormat.format(i1.time)} $avail\n")
-        result.append("${dateTimeFormat.format(i1.time)} - ${dateTimeFormat.format(i2.time)} $bed\n")
-        result.append("${dateTimeFormat.format(i2.time)} - ${dateTimeFormat.format(i3.time)} $avail\n")
-        result.append("${dateTimeFormat.format(i3.time)} - ${dateTimeFormat.format(i4.time)} $bed\n")
+//        result.append("\n").append(getString(R.string.label_getting_back)).append("\n")
+        result.append("M${dateTimeFormat.format(i0.time)} \n ⧄ ${dateTimeFormat.format(i1.time)} \n\n")
+        result.append("M${dateTimeFormat.format(i1.time)} \n \uD83D\uDECF${dateTimeFormat.format(i2.time)} \n\n")
+        result.append("M${dateTimeFormat.format(i2.time)} \n ⧄ ${dateTimeFormat.format(i3.time)} \n\n")
+        result.append("M${dateTimeFormat.format(i3.time)} \n \uD83D\uDECF${dateTimeFormat.format(i4.time)} \n\n")
 
         tvResult.text = result.toString()
     }
