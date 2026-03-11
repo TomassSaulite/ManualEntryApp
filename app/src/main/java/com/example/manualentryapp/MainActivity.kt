@@ -1,16 +1,20 @@
 package com.example.manualentryapp
 
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.res.Configuration
+import android.graphics.Typeface
 import android.os.Bundle
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import java.text.SimpleDateFormat
@@ -24,15 +28,18 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var tvRemoval: TextView
     private lateinit var tvInsertion: TextView
-    private lateinit var tvResult: TextView
     private lateinit var rbFull: RadioButton
 
     private val dateTimeFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
 
+    companion object {
+        private var languageSelectedThisSession = false
+    }
+
     override fun attachBaseContext(newBase: Context) {
-        val lang = newBase.getSharedPreferences("prefs", Context.MODE_PRIVATE).getString("lang", null)
+        val lang = newBase.getSharedPreferences("prefs", MODE_PRIVATE).getString("lang", null)
         if (lang != null) {
-            val locale = Locale(lang)
+            val locale = Locale.forLanguageTag(lang)
             Locale.setDefault(locale)
             val config = Configuration(newBase.resources.configuration)
             config.setLocale(locale)
@@ -45,8 +52,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
-        val prefs = getSharedPreferences("prefs", Context.MODE_PRIVATE)
-        if (!prefs.contains("lang")) {
+        if (!languageSelectedThisSession) {
+            languageSelectedThisSession = true
             showLanguageDialog()
         }
 
@@ -60,7 +67,6 @@ class MainActivity : AppCompatActivity() {
 
         tvRemoval = findViewById(R.id.tvRemoval)
         tvInsertion = findViewById(R.id.tvInsertion)
-        tvResult = findViewById(R.id.tvResult)
         rbFull = findViewById(R.id.rbFull)
 
         findViewById<Button>(R.id.btnRemoval).setOnClickListener {
@@ -77,6 +83,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        findViewById<Button>(R.id.btnInsertionNow).setOnClickListener {
+            val now = Calendar.getInstance()
+            now.set(Calendar.SECOND, 0)
+            now.set(Calendar.MILLISECOND, 0)
+            insertionCalendar = now
+            tvInsertion.text = getString(R.string.insertion_label, dateTimeFormat.format(now.time))
+        }
+
         findViewById<Button>(R.id.btnCalculate).setOnClickListener {
             calculateEntries()
         }
@@ -90,7 +104,9 @@ class MainActivity : AppCompatActivity() {
             .setTitle(R.string.choose_language)
             .setItems(languages) { _, which ->
                 val selectedLang = langCodes[which]
-                getSharedPreferences("prefs", Context.MODE_PRIVATE).edit().putString("lang", selectedLang).apply()
+                getSharedPreferences("prefs", MODE_PRIVATE).edit {
+                    putString("lang", selectedLang)
+                }
                 recreate()
             }
             .setCancelable(false)
@@ -115,60 +131,86 @@ class MainActivity : AppCompatActivity() {
         val insertion = insertionCalendar
 
         if (removal == null || insertion == null) {
-            tvResult.text = getString(R.string.error_set_dates)
+            showErrorDialog(getString(R.string.error_set_dates))
             return
         }
 
         if (removal.after(insertion)) {
-            tvResult.text = getString(R.string.error_date_order)
+            showErrorDialog(getString(R.string.error_date_order))
             return
         }
 
         val result = StringBuilder()
         val isFullEntry = rbFull.isChecked
 
+        val bed = getString(R.string.symbol_bed)
+        val avail = getString(R.string.symbol_availability)
+
         // Forward from removal (Base road)
         val r0 = removal.clone() as Calendar
-        val r1 = (r0.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, 24) }
+        val r1 = (r0.clone() as Calendar).apply { 
+            add(Calendar.HOUR_OF_DAY, 24)
+            if (get(Calendar.MINUTE) > 0) {
+                set(Calendar.MINUTE, 0)
+                add(Calendar.HOUR_OF_DAY, 1)
+            }
+        }
         val r2 = (r1.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, 12) }
         val r3 = (r2.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, 12) }
         val r4 = (r3.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, 12) }
 
         // Backward from insertion (Road back)
         val i4 = insertion.clone() as Calendar
-        val i3 = (i4.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, -24) }
+        val i3 = (i4.clone() as Calendar).apply { 
+            add(Calendar.HOUR_OF_DAY, -24)
+            set(Calendar.MINUTE, 0)
+        }
         val i2 = (i3.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, -12) }
         val i1 = (i2.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, -12) }
         val i0 = (i1.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, -12) }
 
         if (r4.after(i0)) {
-            tvResult.text = getString(R.string.error_period_short)
+            showErrorDialog(getString(R.string.error_period_short))
             return
         }
 
-        val bed = getString(R.string.symbol_bed)
-        val avail = getString(R.string.symbol_availability)
-        val vacBed = getString(R.string.symbol_vacation_bed)
-
         if (isFullEntry) {
-//            result.append(getString(R.string.label_getting_to_base)).append("\n")
-            result.append("M${dateTimeFormat.format(r0.time)} \n \uD83D\uDECF${dateTimeFormat.format(r1.time)} \n\n")
-            result.append("M${dateTimeFormat.format(r1.time)} \n ⧄${dateTimeFormat.format(r2.time)} \n\n")
-            result.append("M${dateTimeFormat.format(r2.time)} \n \uD83D\uDECF${dateTimeFormat.format(r3.time)}\n\n")
-            result.append("M${dateTimeFormat.format(r3.time)} \n ⧄${dateTimeFormat.format(r4.time)} \n\n")
-            result.append("\n")
+            result.append("M  ${dateTimeFormat.format(r0.time)} \n$bed ${dateTimeFormat.format(r1.time)}\n\n")
+            result.append("M  ${dateTimeFormat.format(r1.time)} \n$avail  ${dateTimeFormat.format(r2.time)}\n\n")
+            result.append("M  ${dateTimeFormat.format(r2.time)} \n$bed ${dateTimeFormat.format(r3.time)}\n\n")
+            result.append("M  ${dateTimeFormat.format(r3.time)} \n$avail  ${dateTimeFormat.format(r4.time)}\n\n")
         }
 
-//        result.append(getString(R.string.label_vacation)).append("\n")
         val vacationStart = if (isFullEntry) r4 else r0
-        result.append("M${dateTimeFormat.format(vacationStart.time)}  \n \uD83D\uDECF${dateTimeFormat.format(i0.time)} \n\n")
+        result.append("M  ${dateTimeFormat.format(vacationStart.time)} \n$bed ${dateTimeFormat.format(i0.time)}\n\n")
 
-//        result.append("\n").append(getString(R.string.label_getting_back)).append("\n")
-        result.append("M${dateTimeFormat.format(i0.time)} \n ⧄ ${dateTimeFormat.format(i1.time)} \n\n")
-        result.append("M${dateTimeFormat.format(i1.time)} \n \uD83D\uDECF${dateTimeFormat.format(i2.time)} \n\n")
-        result.append("M${dateTimeFormat.format(i2.time)} \n ⧄ ${dateTimeFormat.format(i3.time)} \n\n")
-        result.append("M${dateTimeFormat.format(i3.time)} \n \uD83D\uDECF${dateTimeFormat.format(i4.time)} \n\n")
+        result.append("M  ${dateTimeFormat.format(i0.time)} \n$avail  ${dateTimeFormat.format(i1.time)}\n\n")
+        result.append("M  ${dateTimeFormat.format(i1.time)} \n$bed ${dateTimeFormat.format(i2.time)}\n\n")
+        result.append("M  ${dateTimeFormat.format(i2.time)} \n$avail  ${dateTimeFormat.format(i3.time)}\n\n")
+        result.append("M  ${dateTimeFormat.format(i3.time)} \n$bed ${dateTimeFormat.format(i4.time)}\n\n")
 
-        tvResult.text = result.toString()
+        showResultDialog(result.toString())
+    }
+
+    private fun showResultDialog(result: String) {
+        val dialog = Dialog(this, com.google.android.material.R.style.Theme_Material3_DayNight_NoActionBar)
+        dialog.setContentView(R.layout.dialog_result)
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        
+        val tvResultPopup = dialog.findViewById<TextView>(R.id.tvResultPopup)
+        val btnClose = dialog.findViewById<Button>(R.id.btnClose)
+        
+        tvResultPopup.typeface = Typeface.MONOSPACE
+        tvResultPopup.text = result
+        btnClose.setOnClickListener { dialog.dismiss() }
+        
+        dialog.show()
+    }
+
+    private fun showErrorDialog(message: String) {
+        AlertDialog.Builder(this)
+            .setMessage(message)
+            .setPositiveButton(android.R.string.ok, null)
+            .show()
     }
 }
