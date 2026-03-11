@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Tacho Manual Entry</string>
+    <string name="title">Tacho Manual Entry Helper</string>
+    <string name="btn_set_removal">Set Removal Date &amp; Time</string>
+    <string name="btn_set_insertion">Set Insertion Date &amp; Time</string>
+    <string name="btn_calculate">Calculate Entry</string>
+    <string name="tv_removal_default">Removal: Not set</string>
+    <string name="tv_insertion_default">Insertion: Not set</string>
+    <string name="removal_label">Removal: %1$s</string>
+    <string name="insertion_label">Insertion: %1$s</string>
+    <string name="error_set_dates">Please set both removal and insertion dates.</string>
+    <string name="error_date_order">Removal date must be before insertion date.</string>
+    <string name="error_period_short">The time period is too short for this standard breakdown (minimum 120 hours required).</string>
+    <string name="label_getting_to_base">Getting to the base:</string>
+    <string name="label_vacation">Vacation:</string>
+    <string name="label_getting_back">Getting back to the truck:</string>
+    <string name="symbol_bed">bed symbol</string>
+    <string name="symbol_availability">availability symbol</string>
+    <string name="symbol_vacation_bed">vacation/bed symbol</string>
+</resources>
