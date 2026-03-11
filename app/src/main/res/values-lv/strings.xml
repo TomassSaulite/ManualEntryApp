@@ -1,17 +1,19 @@
 <resources>
-    <string name="app_name">Manuālais ievads</string>
-    <string name="title">Manuālā ievada palīgs</string>
-    <string name="btn_set_removal">Iestatīt izņemšanas datumu un laiku</string>
-    <string name="btn_set_insertion">Iestatīt ievietošanas datumu un laiku</string>
+    <string name="app_name">Manuālā ievade</string>
+    <string name="title">Manuālās ievades palīgs</string>
+    <string name="label_removal_title">Iestatīt izņemšanas datumu un laiku</string>
+    <string name="label_insertion_title">Iestatīt ievietošanas datumu un laiku</string>
+    <string name="btn_set_removal">Izvēlēties</string>
+    <string name="btn_set_insertion">Izvēlēties</string>
     <string name="btn_now">Tagad</string>
     <string name="btn_calculate">Manuālā ievade</string>
     <string name="tv_removal_default">Izņemšana: Nav iestatīta</string>
     <string name="tv_insertion_default">Ievietošana: Nav iestatīta</string>
     <string name="removal_label">Izņemšana: %1$s</string>
     <string name="insertion_label">Ievietošana: %1$s</string>
-    <string name="error_set_dates">Lūdzu, iestatiet abus datumus.</string>
+    <string name="error_set_dates">Lūdzu, iestātiet abus datumus.</string>
     <string name="error_date_order">Izņemšanas datumam jābūt pirms ievietošanas datuma.</string>
-    <string name="error_period_short">Laika periods ir pārāk īss šim standarta sadalījumam (nepieciešamas vismaz 120 stundas).</string>
+    <string name="error_period_short">Laika periods ir pārāk īss (nepieciešams vismaz 120 stundas).</string>
     <string name="label_getting_to_base">Nokļūšana bāzē:</string>
     <string name="label_vacation">Atvaļinājums:</string>
     <string name="label_getting_back">Nokļūšana Eiropā:</string>
@@ -26,12 +28,12 @@
     <string name="entry_type_full">Darbs beidzās Eiropā</string>
     <string name="entry_type_back">Darbs beidzās Latvijā</string>
 
-    <string name="vdo_instructions_title">VDO soli pa solim pamācība</string>
-    <string name="vdo_instr_intro">1. Ievietojiet karti. \"M entry?\" -> Nospiediet [OK]\n2. \"End time\" -> Nospiediet [OK]\n\nTagad precīzi ievadiet šos soļus:</string>
+    <string name="vdo_instructions_title">Kā ievadīt manuālo ievadi?</string>
+    <string name="vdo_instr_intro">1. Ievietojiet karti. \"M entry?\" -> Nospiediet [OK]\n2. \"End time\" -> Nospiediet [OK]\n\nTagad precīzi sekojiet šiem soļiem:</string>
     <string name="vdo_instr_step">SOLIS %1$d:\n- Izvēlieties %2$s izmantojot [▲/▼] -> Nospiediet [OK]\n- Iestatiet datumu uz %3$s izmantojot [▲/▼] -> Nospiediet [OK]\n- Iestatiet laiku uz %4$s izmantojot [▲/▼] -> Nospiediet [OK]</string>
-    <string name="vdo_instr_final">\nŠajā brīdī varat pārbaudīt visus ievadītos datus. Izmantojiet [↩] pogu, ja nepieciešams kaut ko labot.\n\nNobeiguma soļi:\n- \"Confirm?\" -> Nospiediet [OK]\n- \"Start country\" -> Izvēlieties izmantojot [▲/▼] -> Nospiediet [OK]</string>
+    <string name="vdo_instr_final">\nŠajā brīdī ir iespējams pārbaudīt visus ievadītos datus. Izmantojiet [↩] pogu, ja nepieciešams veikt labojumus.\n\Pēdējie soļi:\n- \"Confirm?\" -> Nospiediet [OK]\n- \"Start country\" -> Izvēlieties izmantojot [▲/▼] -> Nospiediet [OK]</string>
 
     <string name="activity_rest">ATPŪTA 🛌</string>
-    <string name="activity_avail">GATAVĪBA ⧄</string>
+    <string name="activity_avail">PIEEJAMĪBA ⧄</string>
     <string name="activity_work">DARBS ⚒</string>
 </resources>

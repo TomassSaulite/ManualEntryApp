@@ -1,17 +1,19 @@
 <resources>
     <string name="app_name">Помощник ручного ввода</string>
     <string name="title">Помощник ручного ввода</string>
-    <string name="btn_set_removal">Установить дату и время извлечения</string>
-    <string name="btn_set_insertion">Установить дату и время вставки</string>
+    <string name="label_removal_title">Ввести дату и время извлечения</string>
+    <string name="label_insertion_title">Ввести дату и время установки</string>
+    <string name="btn_set_removal">Выбрать</string>
+    <string name="btn_set_insertion">Выбрать</string>
     <string name="btn_now">Сейчас</string>
     <string name="btn_calculate">Ручной ввод</string>
     <string name="tv_removal_default">Извлечение: Не установлено</string>
-    <string name="tv_insertion_default">Вставка: Не установлено</string>
+    <string name="tv_insertion_default">Установка: Не установлено</string>
     <string name="removal_label">Извлечение: %1$s</string>
     <string name="insertion_label">Установка: %1$s</string>
     <string name="error_set_dates">Пожалуйста, введите обе даты.</string>
     <string name="error_date_order">Дата извлечения должна быть раньше даты установки.</string>
-    <string name="error_period_short">Период времени слишком мал для стандартного разделения (требуется минимум 120 часов).</string>
+    <string name="error_period_short">Период времени слишком мал (Необходимо больше 120 часов)</string>
     <string name="label_getting_to_base">Путь на базу:</string>
     <string name="label_vacation">Отпуск:</string>
     <string name="label_getting_back">Путь обратно к тягачу:</string>
@@ -26,12 +28,12 @@
     <string name="entry_type_full">Извлечение было в Европе</string>
     <string name="entry_type_back">Извлечение было в Латвии</string>
 
-    <string name="vdo_instructions_title">Пошаговая инструкция VDO</string>
+    <string name="vdo_instructions_title">Пошаговая инструкция</string>
     <string name="vdo_instr_intro">1. Вставьте карту. Подождите \"M entry?\".\n2. Нажмите [OK].\n3. Появится \"End time\". Нажмите [OK].\n\nСледуйте этим шагам точно:</string>
     <string name="vdo_instr_step">ШАГ %1$d:\n- Режим: Нажимайте [▲/▼] до %2$s. Нажмите [OK].\n- Дата: Нажимайте [▲/▼] до %3$s. Нажмите [OK].\n- Время: Нажимайте [▲/▼] до %4$s. Нажмите [OK].</string>
-    <string name="vdo_instr_final">\nНа этом этапе вы можете проверить все введенные данные. Используйте кнопку [↩], если нужно что-то исправить.\n\nФИНАЛЬНЫЕ ШАГИ:\n- \"Confirm?\" -> Нажмите [OK].\n- \"Start country\" -> Выберите страну [▲/▼]. Нажмите [OK].</string>
+    <string name="vdo_instr_final">\nНа этом этапе вы можете проверить все введенные данные. Используйте кнопку [↩], если нужно исправить введенные данные.\n\nФИНАЛЬНЫЕ ШАГИ:\n- \"Confirm?\" -> Нажмите [OK].\n- \"Start country\" -> Выберите страну [▲/▼]. Нажмите [OK].</string>
 
     <string name="activity_rest">ОТДЫХ 🛌</string>
-    <string name="activity_avail">ГОТОВность ⧄</string>
+    <string name="activity_avail">ДОСТУПНОСТЬ ⧄</string>
     <string name="activity_work">РАБОТА ⚒</string>
 </resources>

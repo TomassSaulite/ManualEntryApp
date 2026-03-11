@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Manual Entry</string>
     <string name="title">Manual Entry Helper</string>
-    <string name="btn_set_removal">Set Removal Date &amp; Time</string>
-    <string name="btn_set_insertion">Set Insertion Date &amp; Time</string>
+    <string name="label_removal_title">Set Removal Date &amp; Time</string>
+    <string name="label_insertion_title">Set Insertion Date &amp; Time</string>
+    <string name="btn_set_removal">Select</string>
+    <string name="btn_set_insertion">Select</string>
     <string name="btn_now">Now</string>
     <string name="btn_calculate">Manual Entry</string>
     <string name="tv_removal_default">Removal: Not set</string>
@@ -11,7 +13,7 @@
     <string name="insertion_label">Insertion: %1$s</string>
     <string name="error_set_dates">Please set both removal and insertion dates.</string>
     <string name="error_date_order">Removal date must be before insertion date.</string>
-    <string name="error_period_short">The time period is too short for this standard breakdown (minimum 120 hours required).</string>
+    <string name="error_period_short">The time period is too short (minimum 120 hours required).</string>
     <string name="label_getting_to_base">Getting to the base:</string>
     <string name="label_vacation">Vacation:</string>
     <string name="label_getting_back">Getting back to the truck:</string>
@@ -22,16 +24,16 @@
     <string name="lang_en">English</string>
     <string name="lang_ru">Русский</string>
     <string name="lang_lv">Latviešu</string>
-    <string name="entry_type">Select Entry Type:</string>
+    <string name="entry_type">Select manual entry type:</string>
     <string name="entry_type_full">Tacho card was removed in Europe</string>
     <string name="entry_type_back">Tacho card was removed in Latvia</string>
 
-    <string name="vdo_instructions_title">VDO Step-by-Step Guide</string>
+    <string name="vdo_instructions_title">Step-by-Step Guide</string>
     <string name="vdo_instr_intro">1. Insert card. \"M entry?\" -> Press [OK]\n2. \"End time\" -> Press [OK]\n\nNow enter these steps precisely:</string>
     <string name="vdo_instr_step">STEP %1$d:\n- Select %2$s using [▲/▼] -> Press [OK]\n- Set Date to %3$s using [▲/▼] -> Press [OK]\n- Set Time to %4$s using [▲/▼] -> Press [OK]</string>
     <string name="vdo_instr_final">\nAt this point, you can review all entries. Use the [↩] button if you need to correct anything.\n\nFinal steps:\n- \"Confirm?\" -> Press [OK]\n- \"Start country\" -> Select using [▲/▼] -> Press [OK]</string>
 
     <string name="activity_rest">REST 🛌</string>
-    <string name="activity_avail">AVAILability ⧄</string>
+    <string name="activity_avail">AVAILABILITY ⧄</string>
     <string name="activity_work">WORK ⚒</string>
 </resources>
