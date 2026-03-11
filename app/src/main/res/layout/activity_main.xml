@@ -17,7 +17,7 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tacho Manual Entry Helper"
+            android:text="@string/title"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Set Removal Date &amp; Time"
+            android:text="@string/btn_set_removal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title" />
@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Removal: Not set"
+            android:text="@string/tv_removal_default"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnRemoval" />
 
@@ -48,7 +48,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Set Insertion Date &amp; Time"
+            android:text="@string/btn_set_insertion"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvRemoval" />
@@ -58,17 +58,50 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Insertion: Not set"
+            android:text="@string/tv_insertion_default"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnInsertion" />
+
+        <TextView
+            android:id="@+id/tvModeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Select Entry Type:"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvInsertion" />
+
+        <RadioGroup
+            android:id="@+id/rgEntryType"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvModeLabel">
+
+            <RadioButton
+                android:id="@+id/rbFull"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/entry_type_full" />
+
+            <RadioButton
+                android:id="@+id/rbBackOnly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/entry_type_back" />
+        </RadioGroup>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCalculate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Calculate Entry"
-            app:layout_constraintTop_toBottomOf="@id/tvInsertion" />
+            android:text="@string/btn_calculate"
+            app:layout_constraintTop_toBottomOf="@id/rgEntryType" />
 
         <TextView
             android:id="@+id/tvResult"

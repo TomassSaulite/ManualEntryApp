@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Помощник ручного ввода Тахо</string>
+    <string name="title">Помощник ручного ввода Тахо</string>
+    <string name="btn_set_removal">Установить дату и время извлечения</string>
+    <string name="btn_set_insertion">Установить дату и время вставки</string>
+    <string name="btn_calculate">Рассчитать ввод</string>
+    <string name="tv_removal_default">Извлечение: Не установлено</string>
+    <string name="tv_insertion_default">Вставка: Не установлено</string>
+    <string name="removal_label">Извлечение: %1$s</string>
+    <string name="insertion_label">Вставка: %1$s</string>
+    <string name="error_set_dates">Пожалуйста, установите обе даты.</string>
+    <string name="error_date_order">Дата извлечения должна быть раньше даты вставки.</string>
+    <string name="error_period_short">Период времени слишком мал для этого стандартного разделения (требуется минимум 120 часов).</string>
+    <string name="label_getting_to_base">Дорога на базу:</string>
+    <string name="label_vacation">Отпуск:</string>
+    <string name="label_getting_back">Дорога обратно к грузовику:</string>
+    <string name="symbol_bed">символ кровати</string>
+    <string name="symbol_availability">символ готовности</string>
+    <string name="symbol_vacation_bed">символ отпуска/кровати</string>
+    <string name="choose_language">Выберите язык</string>
+    <string name="lang_en">English</string>
+    <string name="lang_ru">Русский</string>
+    <string name="lang_lv">Latviešu</string>
+    <string name="entry_type_full">Полный ввод (База + Отпуск + Обратно)</string>
+    <string name="entry_type_back">Только конец (Отпуск + Обратно)</string>
+</resources>
