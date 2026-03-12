@@ -198,8 +198,15 @@ class MainActivity : AppCompatActivity() {
                     R.string.activity_avail -> getString(R.string.symbol_availability)
                     else -> "⚒"
                 }
+                
+                // Alignment logic:
+                // First line starts with 'M' followed by two spaces.
+                // Second line starts with the activity symbol.
+                // Emojis (like the bed) are often double-width, so we adjust padding accordingly.
+                val padding = if (symbol.length > 1) " " else "  "
+                
                 append("M  ${dateTimeFormat.format(startTime.time)}\n")
-                append("$symbol  ${dateTimeFormat.format(block.endTime.time)}\n\n")
+                append("$symbol$padding${dateTimeFormat.format(block.endTime.time)}\n\n")
                 startTime = block.endTime
             }
         }

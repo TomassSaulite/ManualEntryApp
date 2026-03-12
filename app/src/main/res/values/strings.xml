@@ -27,12 +27,10 @@
     <string name="entry_type">Select manual entry type:</string>
     <string name="entry_type_full">Tacho card was removed in Europe</string>
     <string name="entry_type_back">Tacho card was removed in Latvia</string>
-
     <string name="vdo_instructions_title">Step-by-Step Guide</string>
-    <string name="vdo_instr_intro">1. Insert card and wait. \n2. \"1M entry addition\" -> Press [OK]</string>
+    <string name="vdo_instr_intro">Before inserting your tacho card the tachograph\'s language must be set to english \n1.Press the [▲] button 2 times.\n2.\"Choose a language?\"->Press [OK]. \n3.Using the [▲/▼] buttons choose \"Language English\"->Press [OK] \n4. Insert your tacho card and wait\n5.\"1M entry addition\" -> Press [OK].</string>
     <string name="vdo_instr_step">STEP %1$d:\n- Select %2$s using [▲/▼] -> Press [OK]\n- Set Date to %3$s using [▲/▼] -> Press [OK]\n- Set Time to %4$s using [▲/▼] -> Press [OK]</string>
     <string name="vdo_instr_final">\nAt this point, you can review all entries. Use the [↩] button if you need to correct anything.\n\nFinal steps:\n- \"Start country\" -> Select using [▲/▼] -> Press [OK] \n-\"1M confirm entry?\" -> Press [OK]. \n- \"Publish ITS data?\" -> Press [OK]. \n- \"Publish VDO data?\" -> Press [OK].\nNow you must wait for the data to finish loading and then you can start working!\n\n</string>
-
     <string name="activity_rest">REST 🛌</string>
     <string name="activity_avail">AVAILABILITY ⧄</string>
     <string name="activity_work">WORK ⚒</string>
