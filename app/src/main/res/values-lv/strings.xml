@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Manuālā ievade</string>
     <string name="title">Manuālās ievades palīgs</string>
-    <string name="label_removal_title">Iestatīt izņemšanas datumu un laiku</string>
-    <string name="label_insertion_title">Iestatīt ievietošanas datumu un laiku</string>
+    <string name="label_removal_title">Iestatīt čipa izņemšanas datumu un laiku</string>
+    <string name="label_insertion_title">Iestatīt čipa ievietošanas datumu un laiku</string>
     <string name="btn_set_removal">Izvēlēties</string>
     <string name="btn_set_insertion">Izvēlēties</string>
     <string name="btn_now">Tagad</string>
@@ -29,9 +29,11 @@
     <string name="entry_type_back">Darbs beidzās Latvijā</string>
 
     <string name="vdo_instructions_title">Kā ievadīt manuālo ievadi?</string>
-    <string name="vdo_instr_intro">1. Ievietojiet karti. \"M entry?\" -> Nospiediet [OK]\n2. \"End time\" -> Nospiediet [OK]\n\nTagad precīzi sekojiet šiem soļiem:</string>
+    <string name="vdo_instr_intro">1. Ievietojiet karti un gaidat. \n2. \"1M entry addition\" -> Nospiediet [OK]</string>
+
     <string name="vdo_instr_step">SOLIS %1$d:\n- Izvēlieties %2$s izmantojot [▲/▼] -> Nospiediet [OK]\n- Iestatiet datumu uz %3$s izmantojot [▲/▼] -> Nospiediet [OK]\n- Iestatiet laiku uz %4$s izmantojot [▲/▼] -> Nospiediet [OK]</string>
-    <string name="vdo_instr_final">\nŠajā brīdī ir iespējams pārbaudīt visus ievadītos datus. Izmantojiet [↩] pogu, ja nepieciešams veikt labojumus.\n\Pēdējie soļi:\n- \"Confirm?\" -> Nospiediet [OK]\n- \"Start country\" -> Izvēlieties izmantojot [▲/▼] -> Nospiediet [OK]</string>
+
+    <string name="vdo_instr_final">\nŠajā brīdī ir iespējams pārbaudīt visus ievadītos datus. Izmantojiet [↩] pogu, ja nepieciešams veikt labojumus.\n\Pēdējie soļi:\n- \"Start country\" -> Izvēlieties izmantojot [▲/▼] -> Nospiediet [OK] \n-\"1M confirm entry?\" -> Nospiediet [OK]. \n- \"Publish ITS data?\" -> Nospiediet [OK]. \n- \"Publish VDO data?\" -> Nospiediet [OK].\n Tagad ir nepieciešams pagaidīt kamēr dati ielādēsies un tad var sākt darbu!\n\n</string>
 
     <string name="activity_rest">ATPŪTA 🛌</string>
     <string name="activity_avail">PIEEJAMĪBA ⧄</string>
