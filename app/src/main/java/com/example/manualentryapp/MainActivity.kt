@@ -103,8 +103,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showLanguageDialog() {
-        val languages = arrayOf(getString(R.string.lang_en), getString(R.string.lang_ru), getString(R.string.lang_lv))
-        val langCodes = arrayOf("en", "ru", "lv")
+        val languages = arrayOf(
+            getString(R.string.lang_en),
+            getString(R.string.lang_ru),
+            getString(R.string.lang_lv),
+            getString(R.string.lang_hi),
+            getString(R.string.lang_uz)
+        )
+        val langCodes = arrayOf("en", "ru", "lv", "hi", "uz")
         
         AlertDialog.Builder(this)
             .setTitle(R.string.choose_language)
@@ -211,11 +217,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        showResultDialog(resultText)
+        showResultDialog(resultText.trim())
     }
 
     private fun showResultDialog(result: String) {
-        val dialog = Dialog(this, com.google.android.material.R.style.Theme_Material3_DayNight_NoActionBar)
+        val dialog = Dialog(this, R.style.Theme_ManualEntryApp)
         dialog.setContentView(R.layout.dialog_result)
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         
