@@ -13,13 +13,13 @@
     <string name="insertion_label">Установка: %1$s</string>
     <string name="error_set_dates">Пожалуйста, введите обе даты.</string>
     <string name="error_date_order">Дата извлечения должна быть раньше даты установки.</string>
-    <string name="error_period_short">Период времени слишком мал (Необходимо больше 120 часов)</string>
+    <string name="error_period_short">Период времени слишком мал. Для этого типа ввода требуется не менее %1$s.</string>
     <string name="label_getting_to_base">Путь на базу:</string>
     <string name="label_vacation">Отпуск:</string>
     <string name="label_getting_back">Путь обратно к тягачу:</string>
-    <string name="symbol_bed">🛌</string>
+    <string name="symbol_bed">⑁</string>
     <string name="symbol_availability">⧄</string>
-    <string name="symbol_vacation_bed">🛌</string>
+    <string name="symbol_vacation_bed">⑁</string>
     <string name="choose_language">Выберите язык</string>
     <string name="lang_en">English</string>
     <string name="lang_ru">Русский</string>
@@ -34,7 +34,11 @@
     <string name="vdo_instr_intro">Перед установкой чипа в тахограф необходимо поменять язык на русский. \n1.Нажимаем 2 раза кнопку [▲].\n2.\"Выбрать язык?\"->Нажмите [OK]. \n3.Исползуя кнопки [▲/▼] выберите \"Язык Русский\"->Нажмите [OK] \n4. Вставьте карту. Подождите.\n5.\"1M Осуществить ручной ввод?\" -> Нажмите [OK].</string>
     <string name="vdo_instr_step">ШАГ %1$d:\n- Режим: Нажимайте [▲/▼] до %2$s. Нажмите [OK].\n- Дата: Нажимайте [▲/▼] до %3$s. Нажмите [OK].\n- Время: Нажимайте [▲/▼] до %4$s. Нажмите [OK].</string>
     <string name="vdo_instr_final">На этом этапе вы можете проверить все введенные данные. Используйте кнопку [↩], если нужно исправить введенные данные.\n\nФИНАЛЬНЫЕ ШАГИ:\n- \"Начало страны\" -> Выберите страну [▲/▼]. Нажмите [OK].\n- \"1M Осуществить ручной ввод?\" -> Нажмите [OK]. \n- \"Выдать данные ITS?\" -> Нажмите [OK]. \n- \"Выдать данные VDO?\" -> Нажмите [OK].\nДалее ждем пока загрузятся данные и можно начинать работу!</string>
-    <string name="activity_rest">ОТДЫХ 🛌</string>
+    <string name="activity_rest">ОТДЫХ ⑁</string>
     <string name="activity_avail">ДОСТУПНОСТЬ ⧄</string>
     <string name="activity_work">РАБОТА ⚒</string>
+    <string name="label_rest_after_removal">Отдых сразу после извлечения:</string>
+    <string name="label_rest_before_insertion">Отдых перед установкой:</string>
+    <string name="rest_45">45ч</string>
+    <string name="rest_24">24ч</string>
 </resources>
