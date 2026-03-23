@@ -27,8 +27,9 @@
     <string name="lang_hi">हिन्दी</string>
     <string name="lang_uz">Oʻzbekcha</string>
     <string name="entry_type">Qo’lda kiritish turini tanlang:</string>
-    <string name="entry_type_full">Ajratish Evropada bo’lgan</string>
-    <string name="entry_type_back">Ajratish Latviada bo’lgan </string>
+    <string name="entry_type_full">Чип был извлечен в Европе и вставлен в Европе</string>
+    <string name="entry_type_back">Чип был извлечен в Латвии и вставлен в Европе</string>
+    <string name="entry_type_to_base">Чип был извлечен в Европе и вставлен в Латвии</string>
     <string name="vdo_instructions_title">Ketmaketlikdagi ko\'rsatmalar</string>
     <string name="vdo_instr_intro">Taxografga chipni yuklashdan oldin, tilni rus-tiliga o’zgartiring. \n1.2 Marotaba [▲] tugmasini bosing.\n2.\"Выбрать язык?\"-> Bosing [OK]. \n3.Shu tugmalardan foydalangan xolda [▲/▼] Tilni \"Язык Русский\" ->Bosing[OK]. \n4. Kartani yuklang. Kuting.\n5.\"1M Осуществить ручной ввод?\" -> Bosing [OK].</string>
     <string name="vdo_instr_step">Qadam %1$d:\n- Tartib: Bosing [▲/▼] gacha %2$s. Bosing OK.\n- Sana: Bosing [▲/▼] gacha %3$s. Bosing OK.\n- Vaqt: Bosing [▲/▼] gacha %4$s. Bosing OK.</string>

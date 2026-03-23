@@ -27,12 +27,13 @@
     <string name="lang_hi">हिन्दी</string>
     <string name="lang_uz">Oʻzbekcha</string>
     <string name="entry_type">Izvēlaties manuālās ievades veidu:</string>
-    <string name="entry_type_full">Darbs beidzās Eiropā</string>
-    <string name="entry_type_back">Darbs beidzās Latvijā</string>
+    <string name="entry_type_full">Čips tika izņemts Eiropā un ielikts Eiropā</string>
+    <string name="entry_type_back">Čips tika izņemts Latvijā un ielikts Eiropā</string>
+    <string name="entry_type_to_base">Čips tika izņemts Eiropā un ielikts Latvijā</string>
     <string name="vdo_instructions_title">Kā ievadīt manuālo ievadi?</string>
     <string name="vdo_instr_intro">Pirms tahogrāfa kartes ievietošanas ir nepieciešams samainīt tahogrāfa valodu uz latviešu.\n1.Nospiediet pogu [▲] 2 reizes. \n2.\"Izvēlēties valodu?\"->Nospiediet [OK]. \n3.Lietojot [▲/▼] pogas izvēlaties \"Valoda Latviešu\"->Nospiediet [OK] \n4. Ievietojiet savu taho karti un gaidiet\n5.\"1M ievads papildināt?\" -> Nospiediet [OK].</string>
     <string name="vdo_instr_step">SOLIS %1$d:\n- Izvēlieties %2$s izmantojot [▲/▼] -> Nospiediet [OK]\n- Iestatiet datumu uz %3$s izmantojot [▲/▼] -> Nospiediet [OK]\n- Iestatiet laiku uz %4$s izmantojot [▲/▼] -> Nospiediet [OK]</string>
-    <string name="vdo_instr_final">\nŠajā brīdī ir iespējams pārbaudīt visus ievadītos datus. Izmantojiet [↩] pogu, ja nepieciešams veikt labojumus.\n\Pēdējie soļi:\n- \"Sākuma valsts?\" -> Izvēlieties izmantojot [▲/▼] -> Nospiediet [OK] \n-\"1M saglabāt ievadu?\" -> Nospiediet [OK]. \n- \"Izdot ITS datus?\" -> Nospiediet [OK]. \n- \"Izdot VDO datus?\" -> Nospiediet [OK].\n Tagad ir nepieciešams pagaidīt kamēr dati ielādēsies un tad var sākt darbu!\n\n</string>
+    <string name="vdo_instr_final">\nŠajā brīdī ir iespējams pārbaudīt visus ievadītos datus. Izmantojiet [↩] pogu, ja nepieciešams veikt labojumus.\n\nPēdējie soļi:\n- \"Sākuma valsts?\" -> Izvēlieties izmantojot [▲/▼] -> Nospiediet [OK] \n-\"1M saglabāt ievadu?\" -> Nospiediet [OK]. \n- \"Izdot ITS datus?\" -> Nospiediet [OK]. \n- \"Izdot VDO datus?\" -> Nospiediet [OK].\n Tagad ir nepieciešams pagaidīt kamēr dati ielādēsies un tad var sākt darbu!\n\n</string>
     <string name="activity_rest">ATPŪTA 🛌</string>
     <string name="activity_avail">PIEEJAMĪBA ⧄</string>
     <string name="activity_work">DARBS ⚒</string>

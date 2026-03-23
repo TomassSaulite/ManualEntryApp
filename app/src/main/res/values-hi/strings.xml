@@ -27,8 +27,9 @@
     <string name="lang_hi">हिन्दी</string>
     <string name="lang_uz">Oʻzbekcha</string>
     <string name="entry_type">मैन्युअल प्रविष्टि का प्रकार चुनें:</string>
-    <string name="entry_type_full">यूरोप में टैको कार्ड हटा दिया गया था।</string>
-    <string name="entry_type_back">लातविया में टैको कार्ड हटा दिया गया।</string>
+    <string name="entry_type_full">Tacho card was removed in Europe and inserted in Europe</string>
+    <string name="entry_type_back">Tacho card was removed in Latvia and inserted in Europe</string>
+    <string name="entry_type_to_base">Tacho card was removed in Europe and inserted in Latvia</string>
     <string name="vdo_instructions_title">चरण-दर-चरण मार्गदर्शिका</string>
     <string name="vdo_instr_intro">Bटैको कार्ड डालने से पहले टैकोग्राफ की भाषा अंग्रेजी पर सेट होनी चाहिए। \n1.[▲] बटन को 2 बार दबाएँ।\n2.\"Choose a language?\"-> प्रेस [OK]. \n3.[▲/▼] बटनों का उपयोग करके \"Language English\"-> प्रेस [OK]   \n4. अपना टैको कार्ड डालें और प्रतीक्षा करें।\n5.\"1M entry addition\" -> प्रेस [OK].</string>
     <string name="vdo_instr_step">कदम %1$d:\n- चुनना %2$s का उपयोग करते हुए [▲/▼] -> प्रेस [OK]\n- दिनांक निर्धारित करें %3$s का उपयोग करते हुए [▲/▼] -> प्रेस [OK]\n- पर समय निर्धारित करें %4$s का उपयोग करते हुए [▲/▼] -> प्रेस [OK]</string>

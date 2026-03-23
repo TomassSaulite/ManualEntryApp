@@ -27,8 +27,9 @@
     <string name="lang_hi">हिन्दी</string>
     <string name="lang_uz">Oʻzbekcha</string>
     <string name="entry_type">Выберите вид ручного ввода:</string>
-    <string name="entry_type_full">Извлечение было в Европе</string>
-    <string name="entry_type_back">Извлечение было в Латвии</string>
+    <string name="entry_type_full">Чип был извлечен в Европе и вставлен в Европе</string>
+    <string name="entry_type_back">Чип был извлечен в Латвии и вставлен в Европе</string>
+    <string name="entry_type_to_base">Чип был извлечен в Европе и вставлен в Латвии</string>
     <string name="vdo_instructions_title">Пошаговая инструкция</string>
     <string name="vdo_instr_intro">Перед установкой чипа в тахограф необходимо поменять язык на русский. \n1.Нажимаем 2 раза кнопку [▲].\n2.\"Выбрать язык?\"->Нажмите [OK]. \n3.Исползуя кнопки [▲/▼] выберите \"Язык Русский\"->Нажмите [OK] \n4. Вставьте карту. Подождите.\n5.\"1M Осуществить ручной ввод?\" -> Нажмите [OK].</string>
     <string name="vdo_instr_step">ШАГ %1$d:\n- Режим: Нажимайте [▲/▼] до %2$s. Нажмите [OK].\n- Дата: Нажимайте [▲/▼] до %3$s. Нажмите [OK].\n- Время: Нажимайте [▲/▼] до %4$s. Нажмите [OK].</string>

@@ -29,6 +29,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvRemoval: TextView
     private lateinit var tvInsertion: TextView
     private lateinit var rbFull: RadioButton
+    private lateinit var rbBackOnly: RadioButton
+    private lateinit var rbToBase: RadioButton
 
     private val dateTimeFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
     private val dateFormat = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
@@ -74,6 +76,8 @@ class MainActivity : AppCompatActivity() {
         tvRemoval = findViewById(R.id.tvRemoval)
         tvInsertion = findViewById(R.id.tvInsertion)
         rbFull = findViewById(R.id.rbFull)
+        rbBackOnly = findViewById(R.id.rbBackOnly)
+        rbToBase = findViewById(R.id.rbToBase)
 
         findViewById<Button>(R.id.btnRemoval).setOnClickListener {
             pickDateTime(removalCalendar) { calendar ->
@@ -152,7 +156,6 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        val isFullEntry = rbFull.isChecked
         currentBlocks.clear()
 
         // Forward from removal
@@ -178,23 +181,39 @@ class MainActivity : AppCompatActivity() {
         val i1 = (i2.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, -12) }
         val i0 = (i1.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, -12) }
 
-        if (r4.after(i0)) {
-            showErrorDialog(getString(R.string.error_period_short))
-            return
+        if (rbFull.isChecked) {
+            if (r4.after(i0)) {
+                showErrorDialog(getString(R.string.error_period_short))
+                return
+            }
+        } else if (rbBackOnly.isChecked) {
+            if (removal.after(i0)) {
+                showErrorDialog(getString(R.string.error_period_short))
+                return
+            }
+        } else if (rbToBase.isChecked) {
+             if (r4.after(insertion)) {
+                showErrorDialog(getString(R.string.error_period_short))
+                return
+            }
         }
 
-        if (isFullEntry) {
+        if (rbFull.isChecked || rbToBase.isChecked) {
             currentBlocks.add(TachoBlock(R.string.activity_rest, r1))
             currentBlocks.add(TachoBlock(R.string.activity_avail, r2))
             currentBlocks.add(TachoBlock(R.string.activity_rest, r3))
             currentBlocks.add(TachoBlock(R.string.activity_avail, r4))
         }
 
-        currentBlocks.add(TachoBlock(R.string.activity_rest, i0))
-        currentBlocks.add(TachoBlock(R.string.activity_avail, i1))
-        currentBlocks.add(TachoBlock(R.string.activity_rest, i2))
-        currentBlocks.add(TachoBlock(R.string.activity_avail, i3))
-        currentBlocks.add(TachoBlock(R.string.activity_rest, i4))
+        if (rbFull.isChecked || rbBackOnly.isChecked) {
+            currentBlocks.add(TachoBlock(R.string.activity_rest, i0))
+            currentBlocks.add(TachoBlock(R.string.activity_avail, i1))
+            currentBlocks.add(TachoBlock(R.string.activity_rest, i2))
+            currentBlocks.add(TachoBlock(R.string.activity_avail, i3))
+            currentBlocks.add(TachoBlock(R.string.activity_rest, i4))
+        } else if (rbToBase.isChecked) {
+            currentBlocks.add(TachoBlock(R.string.activity_rest, insertion))
+        }
 
         val resultText = buildString {
             var startTime: Calendar = removal
@@ -205,10 +224,6 @@ class MainActivity : AppCompatActivity() {
                     else -> "⚒"
                 }
                 
-                // Alignment logic:
-                // First line starts with 'M' followed by two spaces.
-                // Second line starts with the activity symbol.
-                // Emojis (like the bed) are often double-width, so we adjust padding accordingly.
                 val padding = if (symbol.length > 1) " " else "  "
                 
                 append("M  ${dateTimeFormat.format(startTime.time)}\n")
