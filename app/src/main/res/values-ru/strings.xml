@@ -13,7 +13,7 @@
     <string name="insertion_label">Установка: %1$s</string>
     <string name="error_set_dates">Пожалуйста, введите обе даты.</string>
     <string name="error_date_order">Дата извлечения должна быть раньше даты установки.</string>
-    <string name="error_period_short">Период времени слишком мал. Для этого типа ввода требуется не менее %1$s.</string>
+    <string name="error_period_short">Недостаточно времени для данного ручного ввода!</string>
     <string name="label_getting_to_base">Путь на базу:</string>
     <string name="label_vacation">Отпуск:</string>
     <string name="label_getting_back">Путь обратно к тягачу:</string>

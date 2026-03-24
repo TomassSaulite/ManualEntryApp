@@ -132,7 +132,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateRestSelectionVisibility(checkedId: Int) {
-        cardRestAfterRemoval.visibility = if (checkedId == R.id.rbFull || checkedId == R.id.rbToBase) View.VISIBLE else View.GONE
+        // Rest after removal option is only shown for 'Full' entry. 
+        // For 'To Base', it is now always 45h.
+        cardRestAfterRemoval.visibility = if (checkedId == R.id.rbFull) View.VISIBLE else View.GONE
         cardRestBeforeInsertion.visibility = if (checkedId == R.id.rbFull || checkedId == R.id.rbBackOnly) View.VISIBLE else View.GONE
     }
 
@@ -190,16 +192,17 @@ class MainActivity : AppCompatActivity() {
 
         val totalMillis = insertion.timeInMillis - removal.timeInMillis
         
-        val xHours = if (rbAfter45.isChecked) 45 else 24
+        // For 'To Base' entry, xHours is always at least 45.
+        val xHours = if (rbToBase.isChecked || rbAfter45.isChecked) 45 else 24
         val yHours = if (rbBefore45.isChecked) 45 else 24
 
         // Check against total necessary hours (x + y + intermediate blocks)
         val requiredHours = if (rbFull.isChecked) {
-            xHours + yHours + 84 // 12+12+12 (r2-r4) + 12 (vacation) + 12+12+12 (i1-i3)
+            xHours + yHours + 96 // 12+12+12 (r2-r4) + 24 (vacation) + 12+12+12 (i1-i3)
         } else if (rbBackOnly.isChecked) {
-            yHours + 48 // 12 (vacation) + 12+12+12 (i1-i3)
+            yHours + 60 // 24 (vacation) + 12+12+12 (i1-i3)
         } else { // rbToBase
-            xHours + 48 // 12+12+12 (r2-r4) + 12 (vacation)
+            xHours + 60 // 12+12+12 (r2-r4) + 24 (vacation)
         }
 
         if (totalMillis < requiredHours * 3600000L) {
