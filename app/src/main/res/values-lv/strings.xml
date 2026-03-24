@@ -13,13 +13,13 @@
     <string name="insertion_label">Ievietošana: %1$s</string>
     <string name="error_set_dates">Lūdzu, iestātiet abus datumus.</string>
     <string name="error_date_order">Izņemšanas datumam jābūt pirms ievietošanas datuma.</string>
-    <string name="error_period_short">Laika periods ir pārāk īss (nepieciešams vismaz 120 stundas).</string>
+    <string name="error_period_short">Laika periods ir pārāk īss izvēlētajām opcijām.</string>
     <string name="label_getting_to_base">Nokļūšana bāzē:</string>
     <string name="label_vacation">Atvaļinājums:</string>
     <string name="label_getting_back">Nokļūšana Eiropā:</string>
-    <string name="symbol_bed">🛌</string>
+    <string name="symbol_bed">⑁</string>
     <string name="symbol_availability">⧄</string>
-    <string name="symbol_vacation_bed">🛌</string>
+    <string name="symbol_vacation_bed">⑁</string>
     <string name="choose_language">Izvēlieties valodu</string>
     <string name="lang_en">English</string>
     <string name="lang_ru">Русский</string>
@@ -34,7 +34,11 @@
     <string name="vdo_instr_intro">Pirms tahogrāfa kartes ievietošanas ir nepieciešams samainīt tahogrāfa valodu uz latviešu.\n1.Nospiediet pogu [▲] 2 reizes. \n2.\"Izvēlēties valodu?\"->Nospiediet [OK]. \n3.Lietojot [▲/▼] pogas izvēlaties \"Valoda Latviešu\"->Nospiediet [OK] \n4. Ievietojiet savu taho karti un gaidiet\n5.\"1M ievads papildināt?\" -> Nospiediet [OK].</string>
     <string name="vdo_instr_step">SOLIS %1$d:\n- Izvēlieties %2$s izmantojot [▲/▼] -> Nospiediet [OK]\n- Iestatiet datumu uz %3$s izmantojot [▲/▼] -> Nospiediet [OK]\n- Iestatiet laiku uz %4$s izmantojot [▲/▼] -> Nospiediet [OK]</string>
     <string name="vdo_instr_final">\nŠajā brīdī ir iespējams pārbaudīt visus ievadītos datus. Izmantojiet [↩] pogu, ja nepieciešams veikt labojumus.\n\nPēdējie soļi:\n- \"Sākuma valsts?\" -> Izvēlieties izmantojot [▲/▼] -> Nospiediet [OK] \n-\"1M saglabāt ievadu?\" -> Nospiediet [OK]. \n- \"Izdot ITS datus?\" -> Nospiediet [OK]. \n- \"Izdot VDO datus?\" -> Nospiediet [OK].\n Tagad ir nepieciešams pagaidīt kamēr dati ielādēsies un tad var sākt darbu!\n\n</string>
-    <string name="activity_rest">ATPŪTA 🛌</string>
-    <string name="activity_avail">PIEEJAMĪBA ⧄</string>
+    <string name="activity_rest">ATPŪTA ⑁</string>
+    <string name="activity_avail">PIEEJAMĪba ⧄</string>
     <string name="activity_work">DARBS ⚒</string>
+    <string name="label_rest_after_removal">Atpūta uzreiz pēc izņemšanas:</string>
+    <string name="label_rest_before_insertion">Atpūta uzreiz pirms ievietošanas:</string>
+    <string name="rest_45">45h</string>
+    <string name="rest_24">24h</string>
 </resources>

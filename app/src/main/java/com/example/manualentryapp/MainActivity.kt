@@ -5,16 +5,24 @@ import android.app.Dialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.res.Configuration
+import android.graphics.Canvas
+import android.graphics.Paint
 import android.graphics.Typeface
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ReplacementSpan
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
+import androidx.core.graphics.withScale
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import java.text.SimpleDateFormat
@@ -31,6 +39,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rbFull: RadioButton
     private lateinit var rbBackOnly: RadioButton
     private lateinit var rbToBase: RadioButton
+    
+    private lateinit var cardRestAfterRemoval: View
+    private lateinit var cardRestBeforeInsertion: View
+    private lateinit var rbAfter45: RadioButton
+    private lateinit var rbBefore45: RadioButton
 
     private val dateTimeFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
     private val dateFormat = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
@@ -78,6 +91,18 @@ class MainActivity : AppCompatActivity() {
         rbFull = findViewById(R.id.rbFull)
         rbBackOnly = findViewById(R.id.rbBackOnly)
         rbToBase = findViewById(R.id.rbToBase)
+        
+        cardRestAfterRemoval = findViewById(R.id.cardRestAfterRemoval)
+        cardRestBeforeInsertion = findViewById(R.id.cardRestBeforeInsertion)
+        rbAfter45 = findViewById(R.id.rbAfter45)
+        rbBefore45 = findViewById(R.id.rbBefore45)
+
+        val rgEntryType = findViewById<RadioGroup>(R.id.rgEntryType)
+        rgEntryType.setOnCheckedChangeListener { _, checkedId ->
+            updateRestSelectionVisibility(checkedId)
+        }
+        // Initialize visibility
+        updateRestSelectionVisibility(rgEntryType.checkedRadioButtonId)
 
         findViewById<Button>(R.id.btnRemoval).setOnClickListener {
             pickDateTime(removalCalendar) { calendar ->
@@ -104,6 +129,13 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnCalculate).setOnClickListener {
             calculateEntries()
         }
+    }
+
+    private fun updateRestSelectionVisibility(checkedId: Int) {
+        // Rest after removal option is only shown for 'Full' entry. 
+        // For 'To Base', it is now always 45h.
+        cardRestAfterRemoval.visibility = if (checkedId == R.id.rbFull) View.VISIBLE else View.GONE
+        cardRestBeforeInsertion.visibility = if (checkedId == R.id.rbFull || checkedId == R.id.rbBackOnly) View.VISIBLE else View.GONE
     }
 
     private fun showLanguageDialog() {
@@ -158,84 +190,133 @@ class MainActivity : AppCompatActivity() {
 
         currentBlocks.clear()
 
-        // Forward from removal
-        val r0 = removal.clone() as Calendar
-        val r1 = (r0.clone() as Calendar).apply { 
-            add(Calendar.HOUR_OF_DAY, 24)
-            if (get(Calendar.MINUTE) > 0) {
-                set(Calendar.MINUTE, 0)
+        val totalMillis = insertion.timeInMillis - removal.timeInMillis
+        
+        // For 'To Base' entry, xHours is always at least 45.
+        val xHours = if (rbToBase.isChecked || rbAfter45.isChecked) 45 else 24
+        val yHours = if (rbBefore45.isChecked) 45 else 24
+
+        // Check against total necessary hours (x + y + intermediate blocks)
+        val requiredHours = if (rbFull.isChecked) {
+            xHours + yHours + 96 // 12+12+12 (r2-r4) + 24 (vacation) + 12+12+12 (i1-i3)
+        } else if (rbBackOnly.isChecked) {
+            yHours + 60 // 24 (vacation) + 12+12+12 (i1-i3)
+        } else { // rbToBase
+            xHours + 60 // 12+12+12 (r2-r4) + 24 (vacation)
+        }
+
+        if (totalMillis < requiredHours * 3600000L) {
+            showErrorDialog(getString(R.string.error_period_short))
+            return
+        }
+
+        // Generate blocks
+        val r1Base = (removal.clone() as Calendar).apply {
+            if (get(Calendar.MINUTE) > 0 || get(Calendar.SECOND) > 0) {
+                set(Calendar.MINUTE, 0); set(Calendar.SECOND, 0); set(Calendar.MILLISECOND, 0)
                 add(Calendar.HOUR_OF_DAY, 1)
             }
         }
+        
+        val r1 = (r1Base.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, xHours) }
         val r2 = (r1.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, 12) }
         val r3 = (r2.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, 12) }
         val r4 = (r3.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, 12) }
 
-        // Backward from insertion
         val i4 = insertion.clone() as Calendar
-        val i3 = (i4.clone() as Calendar).apply { 
-            add(Calendar.HOUR_OF_DAY, -24)
-            set(Calendar.MINUTE, 0)
+        val i3 = (i4.clone() as Calendar).apply {
+            add(Calendar.HOUR_OF_DAY, -yHours)
+            set(Calendar.MINUTE, 0); set(Calendar.SECOND, 0); set(Calendar.MILLISECOND, 0)
         }
         val i2 = (i3.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, -12) }
         val i1 = (i2.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, -12) }
         val i0 = (i1.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, -12) }
 
         if (rbFull.isChecked) {
-            if (r4.after(i0)) {
-                showErrorDialog(getString(R.string.error_period_short))
-                return
-            }
-        } else if (rbBackOnly.isChecked) {
-            if (removal.after(i0)) {
-                showErrorDialog(getString(R.string.error_period_short))
-                return
-            }
-        } else if (rbToBase.isChecked) {
-             if (r4.after(insertion)) {
-                showErrorDialog(getString(R.string.error_period_short))
-                return
-            }
-        }
-
-        if (rbFull.isChecked || rbToBase.isChecked) {
             currentBlocks.add(TachoBlock(R.string.activity_rest, r1))
             currentBlocks.add(TachoBlock(R.string.activity_avail, r2))
             currentBlocks.add(TachoBlock(R.string.activity_rest, r3))
             currentBlocks.add(TachoBlock(R.string.activity_avail, r4))
-        }
-
-        if (rbFull.isChecked || rbBackOnly.isChecked) {
-            currentBlocks.add(TachoBlock(R.string.activity_rest, i0))
+            currentBlocks.add(TachoBlock(R.string.activity_rest, i0)) // Vacation
+            currentBlocks.add(TachoBlock(R.string.activity_avail, i1))
+            currentBlocks.add(TachoBlock(R.string.activity_rest, i2))
+            currentBlocks.add(TachoBlock(R.string.activity_avail, i3))
+            currentBlocks.add(TachoBlock(R.string.activity_rest, i4))
+        } else if (rbBackOnly.isChecked) {
+            currentBlocks.add(TachoBlock(R.string.activity_rest, i0)) // Vacation
             currentBlocks.add(TachoBlock(R.string.activity_avail, i1))
             currentBlocks.add(TachoBlock(R.string.activity_rest, i2))
             currentBlocks.add(TachoBlock(R.string.activity_avail, i3))
             currentBlocks.add(TachoBlock(R.string.activity_rest, i4))
         } else if (rbToBase.isChecked) {
-            currentBlocks.add(TachoBlock(R.string.activity_rest, insertion))
+            currentBlocks.add(TachoBlock(R.string.activity_rest, r1))
+            currentBlocks.add(TachoBlock(R.string.activity_avail, r2))
+            currentBlocks.add(TachoBlock(R.string.activity_rest, r3))
+            currentBlocks.add(TachoBlock(R.string.activity_avail, r4))
+            currentBlocks.add(TachoBlock(R.string.activity_rest, i4)) // Vacation
         }
 
-        val resultText = buildString {
-            var startTime: Calendar = removal
-            currentBlocks.forEach { block ->
-                val symbol = when(block.activityResId) {
-                    R.string.activity_rest -> getString(R.string.symbol_bed)
-                    R.string.activity_avail -> getString(R.string.symbol_availability)
-                    else -> "⚒"
-                }
-                
-                val padding = if (symbol.length > 1) " " else "  "
-                
-                append("M  ${dateTimeFormat.format(startTime.time)}\n")
-                append("$symbol$padding${dateTimeFormat.format(block.endTime.time)}\n\n")
-                startTime = block.endTime
-            }
+        // Final sanity check: if any block ends after insertion, it's still too short
+        if (currentBlocks.any { it.endTime.after(insertion) }) {
+            showErrorDialog(getString(R.string.error_period_short))
+            return
         }
 
-        showResultDialog(resultText.trim())
+        val resultSpannable = buildSpannableResult(removal)
+        showResultDialog(resultSpannable)
     }
 
-    private fun showResultDialog(result: String) {
+    private fun buildSpannableResult(removal: Calendar): SpannableString {
+        val sb = StringBuilder()
+        var startTime: Calendar = removal
+        val restSymbol = getString(R.string.symbol_bed)
+        
+        currentBlocks.forEach { block ->
+            val symbol = when(block.activityResId) {
+                R.string.activity_rest -> restSymbol
+                R.string.activity_avail -> getString(R.string.symbol_availability)
+                else -> "⚒"
+            }
+            val padding = if (symbol.length > 1) " " else "  "
+            sb.append("M  ${dateTimeFormat.format(startTime.time)}\n")
+            sb.append("$symbol$padding${dateTimeFormat.format(block.endTime.time)}\n\n")
+            startTime = block.endTime
+        }
+
+        return applyBedMirroring(sb.toString().trim())
+    }
+
+    private fun applyBedMirroring(text: CharSequence): SpannableString {
+        val spannable = SpannableString(text)
+        val symbolsToMirror = arrayOf(getString(R.string.symbol_bed), getString(R.string.symbol_vacation_bed))
+        
+        symbolsToMirror.distinct().forEach { symbol ->
+            var index = spannable.indexOf(symbol)
+            while (index >= 0) {
+                spannable.setSpan(
+                    object : ReplacementSpan() {
+                        override fun getSize(paint: Paint, text: CharSequence, start: Int, end: Int, fm: Paint.FontMetricsInt?): Int {
+                            return paint.measureText(text, start, end).toInt()
+                        }
+
+                        override fun draw(canvas: Canvas, text: CharSequence, start: Int, end: Int, x: Float, top: Int, y: Int, bottom: Int, paint: Paint) {
+                            val width = paint.measureText(text, start, end)
+                            canvas.withScale(-1f, 1f, x + width / 2f, y.toFloat()) {
+                                drawText(text, start, end, x, y.toFloat(), paint)
+                            }
+                        }
+                    },
+                    index,
+                    index + symbol.length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                index = spannable.indexOf(symbol, index + symbol.length)
+            }
+        }
+        return spannable
+    }
+
+    private fun showResultDialog(result: CharSequence) {
         val dialog = Dialog(this, R.style.Theme_ManualEntryApp)
         dialog.setContentView(R.layout.dialog_result)
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
@@ -247,39 +328,29 @@ class MainActivity : AppCompatActivity() {
         tvResultPopup.typeface = Typeface.MONOSPACE
         tvResultPopup.text = result
         btnClose.setOnClickListener { dialog.dismiss() }
-        btnInfo.setOnClickListener {
-            showVdoInstructions()
-        }
-        
+        btnInfo.setOnClickListener { showVdoInstructions() }
         dialog.show()
     }
 
     private fun showVdoInstructions() {
         val instr = StringBuilder()
         instr.append(getString(R.string.vdo_instr_intro)).append("\n\n")
-        
         currentBlocks.forEachIndexed { index, block ->
             val activityName = getString(block.activityResId)
             val dateStr = dateFormat.format(block.endTime.time)
             val timeStr = timeFormat.format(block.endTime.time)
-            
-            instr.append(getString(R.string.vdo_instr_step, index + 1, activityName, dateStr, timeStr))
-            instr.append("\n\n")
+            instr.append(getString(R.string.vdo_instr_step, index + 1, activityName, dateStr, timeStr)).append("\n\n")
         }
-        
         instr.append(getString(R.string.vdo_instr_final))
-
+        
         AlertDialog.Builder(this)
             .setTitle(R.string.vdo_instructions_title)
-            .setMessage(instr.toString())
+            .setMessage(applyBedMirroring(instr.toString()))
             .setPositiveButton(android.R.string.ok, null)
             .show()
     }
 
     private fun showErrorDialog(message: String) {
-        AlertDialog.Builder(this)
-            .setMessage(message)
-            .setPositiveButton(android.R.string.ok, null)
-            .show()
+        AlertDialog.Builder(this).setMessage(message).setPositiveButton(android.R.string.ok, null).show()
     }
 }
