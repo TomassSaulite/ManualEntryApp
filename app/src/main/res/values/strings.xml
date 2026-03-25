@@ -36,9 +36,8 @@
     <string name="vdo_instr_final">\nAt this point, you can review all entries. Use the [↩] button if you need to correct anything.\n\nFinal steps:\n- \"Start country\" -> Select using [▲/▼] -> Press [OK] \n-\"1M confirm entry?\" -> Press [OK]. \n- \"Publish ITS data?\" -> Press [OK]. \n- \"Publish VDO data?\" -> Press [OK].\nNow you must wait for the data to finish loading and then you can start working!\n\n</string>
     <string name="activity_rest">REST ⑁</string>
     <string name="activity_avail">AVAILABILITY ⧄</string>
-    <string name="activity_work">WORK ⚒</string>
-    <string name="label_rest_after_removal">Rest after removal?</string>
-    <string name="label_rest_before_insertion">Rest before insertion?</string>
+    <string name="label_rest_after_removal">Rest after removal:</string>
+    <string name="label_rest_before_insertion">Rest before insertion:</string>
     <string name="rest_45">45h</string>
     <string name="rest_24">24h</string>
 </resources>

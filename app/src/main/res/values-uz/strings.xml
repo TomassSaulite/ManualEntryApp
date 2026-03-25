@@ -34,11 +34,11 @@
     <string name="vdo_instr_intro">Taxografga chipni yuklashdan oldin, tilni rus-tiliga o’zgartiring. \n1.2 Marotaba [▲] tugmasini bosing.\n2.\"Выбрать язык?\"-> Bosing [OK]. \n3.Shu tugmalardan foydanangan xolda [▲/▼] Tilni \"Язык Русский\" ->Bosing[OK]. \n4. Kartani yuklang. Kuting.\n5.\"1M Осуществить ручной ввод?\" -> Bosing [OK].</string>
     <string name="vdo_instr_step">Qadam %1$d:\n- Rejim: %2$s ni tanlang [▲/▼] yordamida -> [OK] ni bosing\n- Sanani %3$s ga sozlang [▲/▼] yordamida -> [OK] ni bosing\n- Vaqtni %4$s ga sozlang [▲/▼] yordamida -> [OK] ni bosing</string>
     <string name="vdo_instr_final">Bu bolimda siz barcha yuklagan ma’lumotlaringizni .Shu tugma [↩], orqali o’zgartirish kiritishingiz mumkin. \n\nYAKUNIY QADAMLAR:\n- \"Начало страны\" -> Mamlakatni tanlang [▲/▼]. Bosing OK.\n- \"1M Осуществить ручной ввод?\" -> Bosing OK. \n- \"Выдать данные ITS?\" -> Bosing OK. \n- \"Выдать данные VDO?\" -> Bosing OK.\nBir oz ma’lumotlar yuklanishini kutamiz va ishni boshlayveramiz!</string>
-    <string name="activity_rest">REST ⑁</string>
-    <string name="activity_avail">AVAILABILITY ⧄</string>
-    <string name="activity_work">Ish ⚒</string>
+    <string name="activity_rest">Dam olish  ⑁</string>
+    <string name="activity_avail">Mavjudlik  ⧄</string>
+<!--    <string name="activity_work">Ish ⚒</string>-->
     <string name="label_rest_after_removal">Olib tashlangandan so\'ng darhol qaysi dam olish?</string>
     <string name="label_rest_before_insertion">Kiritishdan oldin qaysi dam olish?</string>
-    <string name="rest_45">45s</string>
-    <string name="rest_24">24s</string>
+    <string name="rest_45">45</string>
+    <string name="rest_24">24</string>
 </resources>

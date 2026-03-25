@@ -36,7 +36,6 @@
     <string name="vdo_instr_final">На этом этапе вы можете проверить все введенные данные. Используйте кнопку [↩], если нужно исправить введенные данные.\n\nФИНАЛЬНЫЕ ШАГИ:\n- \"Начало страны\" -> Выберите страну [▲/▼]. Нажмите [OK].\n- \"1M Осуществить ручной ввод?\" -> Нажмите [OK]. \n- \"Выдать данные ITS?\" -> Нажмите [OK]. \n- \"Выдать данные VDO?\" -> Нажмите [OK].\nДалее ждем пока загрузятся данные и можно начинать работу!</string>
     <string name="activity_rest">ОТДЫХ ⑁</string>
     <string name="activity_avail">ДОСТУПНОСТЬ ⧄</string>
-    <string name="activity_work">РАБОТА ⚒</string>
     <string name="label_rest_after_removal">Отдых сразу после извлечения:</string>
     <string name="label_rest_before_insertion">Отдых перед установкой:</string>
     <string name="rest_45">45ч</string>

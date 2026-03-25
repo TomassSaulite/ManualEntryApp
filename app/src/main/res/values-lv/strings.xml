@@ -36,7 +36,6 @@
     <string name="vdo_instr_final">\nŠajā brīdī ir iespējams pārbaudīt visus ievadītos datus. Izmantojiet [↩] pogu, ja nepieciešams veikt labojumus.\n\nPēdējie soļi:\n- \"Sākuma valsts?\" -> Izvēlieties izmantojot [▲/▼] -> Nospiediet [OK] \n-\"1M saglabāt ievadu?\" -> Nospiediet [OK]. \n- \"Izdot ITS datus?\" -> Nospiediet [OK]. \n- \"Izdot VDO datus?\" -> Nospiediet [OK].\n Tagad ir nepieciešams pagaidīt kamēr dati ielādēsies un tad var sākt darbu!\n\n</string>
     <string name="activity_rest">ATPŪTA ⑁</string>
     <string name="activity_avail">PIEEJAMĪba ⧄</string>
-    <string name="activity_work">DARBS ⚒</string>
     <string name="label_rest_after_removal">Atpūta uzreiz pēc izņemšanas:</string>
     <string name="label_rest_before_insertion">Atpūta uzreiz pirms ievietošanas:</string>
     <string name="rest_45">45h</string>
