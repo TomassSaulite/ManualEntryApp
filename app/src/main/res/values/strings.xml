@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Manual Entry</string>
     <string name="title">Manual Entry Helper</string>
-    <string name="label_removal_title">Removal</string>
-    <string name="label_insertion_title">Insertion</string>
+    <string name="label_removal_title">Set the removal date and time:</string>
+    <string name="label_insertion_title">Set the insertion date and time:</string>
     <string name="btn_set_removal">Set</string>
     <string name="btn_set_insertion">Set</string>
     <string name="btn_now">Now</string>
