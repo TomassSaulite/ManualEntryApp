@@ -28,7 +28,7 @@
     <string name="lang_uz">Oʻzbekcha</string>
     <string name="entry_type">Manual entry type:</string>
     <string name="entry_type_full">Full: Removed &amp; inserted in Europe</string>
-    <string name="entry_type_back">Back: Removed LV, inserted Europe</string>
+    <string name="entry_type_back">To Truck: Removed LV, inserted Europe</string>
     <string name="entry_type_to_base">To Base: Removed Europe, inserted LV</string>
     <string name="vdo_instructions_title">Step-by-Step Guide</string>
     <string name="vdo_instr_intro">Before inserting your tacho card the tachograph\'s language must be set to english \n1.Press the [▲] button 2 times.\n2.\"Choose a language?\"->Press [OK]. \n3.Using the [▲/▼] buttons choose \"Language English\"->Press [OK] \n4. Insert your tacho card and wait\n5.\"1M entry addition\" -> Press [OK].</string>
