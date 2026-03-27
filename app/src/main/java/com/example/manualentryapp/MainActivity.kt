@@ -194,15 +194,15 @@ class MainActivity : AppCompatActivity() {
         val yHours = if (rbBefore45.isChecked) 45 else 24
 
         // Variable for minimum vacation time in hours for the "To Base" mode
-        val minVacationTimeToBaseHours = 24
+        val minVacationTime = 45
 
         // Check against total necessary hours (x + y + intermediate blocks)
         val requiredHours = if (rbFull.isChecked) {
-            xHours + yHours + 96 // 12+12+12 (r2-r4) + 24 (vacation) + 12+12+12 (i1-i3)
+            xHours + yHours + 29 + 29 + minVacationTime // 12+12+12 (r2-r4) + 24 (vacation) + 12+12+12 (i1-i3)
         } else if (rbBackOnly.isChecked) {
-            yHours + 60 // 24 (vacation) + 12+12+12 (i1-i3)
+            yHours + 29 + minVacationTime // 24 (vacation) + 12+12+12 (i1-i3)
         } else { // rbToBase (Removed Europe / Inserted LV)
-            xHours + 36 + minVacationTimeToBaseHours // 12+12+12 (r2-r4) + vacation
+            xHours + 29 + minVacationTime // 12+12+12 (r2-r4) + vacation
         }
 
         if (totalMillis < requiredHours * 3600000L) {
@@ -219,18 +219,18 @@ class MainActivity : AppCompatActivity() {
         }
         
         val r1 = (r1Base.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, xHours) }
-        val r2 = (r1.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, 12) }
-        val r3 = (r2.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, 12) }
-        val r4 = (r3.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, 12) }
+        val r2 = (r1.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, 10) }
+        val r3 = (r2.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, 9) }
+        val r4 = (r3.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, 10) }
 
         val i4 = insertion.clone() as Calendar
         val i3 = (i4.clone() as Calendar).apply {
             add(Calendar.HOUR_OF_DAY, -yHours)
             set(Calendar.MINUTE, 0); set(Calendar.SECOND, 0); set(Calendar.MILLISECOND, 0)
         }
-        val i2 = (i3.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, -12) }
-        val i1 = (i2.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, -12) }
-        val i0 = (i1.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, -12) }
+        val i2 = (i3.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, -10) }
+        val i1 = (i2.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, -9) }
+        val i0 = (i1.clone() as Calendar).apply { add(Calendar.HOUR_OF_DAY, -10) }
 
         if (rbFull.isChecked) {
             currentBlocks.add(TachoBlock(R.string.activity_rest, r1))
